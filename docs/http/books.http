@@ -1,0 +1,31 @@
+### GET Books
+GET http://localhost:5000/books
+Accept: application/json
+
+### GET single Book
+GET http://localhost:5000/books/1
+Accept: application/json
+
+### POST Book
+POST http://localhost:5000/books
+Content-Type: application/json
+
+{
+  "name": "New Book",
+  "author": "New Author",
+  "isbn": "1234567890"
+}
+
+
+### PATCH Book
+PATCH http://localhost:5000/books/1
+Content-Type: application/json
+
+{
+  "name": "Updated Book",
+  "author": "Updated Author",
+  "isbn": "1234567890"
+}
+
+### DELETE Book
+DELETE http://localhost:5000/books/1
