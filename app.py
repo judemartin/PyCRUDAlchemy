@@ -1,16 +1,25 @@
-from flask import Flask
+import os
+import sys
+import flask
+folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, folder)
 
-from api.book_api import blueprint as book_api
-from api.page_api import blueprint as page_api
+
+app = flask.Flask(__name__)
+
+
+def main():
+    register_blueprints()
+    app.run(debug=True, port=5000)
 
 
 def register_blueprints():
-    app.register_blueprint(book_api)
-    app.register_blueprint(page_api)
+    from api import book_api
+    from api import page_api
 
+    app.register_blueprint(book_api.blueprint)
+    app.register_blueprint(page_api.blueprint)
 
-app = Flask(__name__)
-register_blueprints()
 
 if __name__ == '__main__':
-    app.run()
+    main()
