@@ -1,6 +1,6 @@
 import flask
 
-from services import page_service
+from src.services import page_service
 
 blueprint = flask.Blueprint('pages', __name__)
 

@@ -1,6 +1,6 @@
 import sqlalchemy
 
-from data.modelbase import SqlAlchemyBase
+from src.data.modelbase import SqlAlchemyBase
 
 
 class Book(SqlAlchemyBase):

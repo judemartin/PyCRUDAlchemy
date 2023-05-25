@@ -3,7 +3,7 @@ import sys
 
 import flask
 
-from data import db_session
+from src.data import db_session
 
 folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, folder)
@@ -23,8 +23,8 @@ def setup_db():
 
 
 def register_blueprints():
-    from api import book_api
-    from api import page_api
+    from src.api import book_api
+    from src.api import page_api
 
     app.register_blueprint(book_api.blueprint)
     app.register_blueprint(page_api.blueprint)

@@ -5,6 +5,6 @@
 
 
 # noinspection PyUnresolvedReferences
-import entities.book
+import src.entities.book
 # noinspection PyUnresolvedReferences
-import entities.page
+import src.entities.page

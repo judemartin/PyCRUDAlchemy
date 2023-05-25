@@ -23,8 +23,8 @@ PATCH http://localhost:5000/books/1
 Content-Type: application/json
 
 {
-  "title": "Updated Book 50"
+  "title": "Updated Book 150"
 }
 
 ### DELETE Book
-DELETE http://localhost:5000/books/9
+DELETE http://localhost:5000/books/12

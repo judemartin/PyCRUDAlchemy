@@ -1,9 +1,9 @@
 # book service
 
-from data import db_session
-from dto.outbound.book_response_dto import BookResponseDTO
-from entities.book import Book
-from utils.not_found_exception import NotFoundException, json_response
+from src.data import db_session
+from src.dto.outbound.book_response_dto import BookResponseDTO
+from src.entities.book import Book
+from src.utils.not_found_exception import NotFoundException, json_response
 
 
 @json_response
@@ -32,7 +32,7 @@ def create(create_book_request):
     session.add(book)
     session.commit()
     book_response = BookResponseDTO.map_entity_to_dto(book)
-    return book_response.to_json(), 201
+    return book_response, 201
 
 
 @json_response

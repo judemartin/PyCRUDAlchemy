@@ -1,7 +1,7 @@
 import flask
 from flask import request
 
-from services import book_service
+from src.services import book_service
 
 blueprint = flask.Blueprint('books', __name__)
 
