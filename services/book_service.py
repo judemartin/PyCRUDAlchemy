@@ -1,4 +1,5 @@
 # book service
+from flask import jsonify
 
 from data import db_session
 from entities.book import Book
@@ -19,8 +20,24 @@ def find_one(book_id: int):
     return book
 
 
-def create():
-    return 'Book created!'
+@json_response
+def create(create_book_request):
+    session = db_session.create_session()
+    book = Book()
+    book.title = create_book_request.get('title')
+    book.author = create_book_request.get('author')
+    book.description = create_book_request.get('description')
+    book.isbn = create_book_request.get('isbn')
+    session.add(book)
+    session.commit()
+    book_data = {
+        'id': book.id,
+        'title': book.title,
+        'author': book.author,
+        'description': book.description,
+        'isbn': book.isbn
+    }
+    return jsonify(book_data), 201
 
 
 def update(book_id: int):

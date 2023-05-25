@@ -1,4 +1,5 @@
 import flask
+from flask import request
 
 from services import book_service
 
@@ -17,7 +18,8 @@ def find_one(book_id):
 
 @blueprint.route('/books', methods=['POST'])
 def create():
-    return book_service.create()
+    create_book_request = request.get_json()
+    return book_service.create(create_book_request)
 
 
 @blueprint.route('/books/<book_id>', methods=['PATCH'])

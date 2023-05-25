@@ -11,9 +11,10 @@ POST http://localhost:5000/books
 Content-Type: application/json
 
 {
-  "name": "New Book",
+  "isbn": "Test ISBN 5",
+  "title": "New Book 5",
   "author": "New Author",
-  "isbn": "1234567890"
+  "description": "1234567890"
 }
 
 
