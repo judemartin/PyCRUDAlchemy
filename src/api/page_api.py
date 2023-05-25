@@ -1,4 +1,5 @@
 import flask
+from flask import request
 
 from src.services import page_service
 
@@ -17,12 +18,14 @@ def get(page_id):
 
 @blueprint.route('/pages', methods=['POST'])
 def create():
-    return page_service.create()
+    create_page_request = request.get_json()
+    return page_service.create(create_page_request)
 
 
 @blueprint.route('/pages/<page_id>', methods=['PATCH'])
 def update(page_id):
-    return page_service.update(page_id)
+    update_page_request = request.get_json()
+    return page_service.update(page_id, update_page_request)
 
 
 @blueprint.route('/pages/<page_id>', methods=['DELETE'])

@@ -11,10 +11,10 @@ POST http://localhost:5000/books
 Content-Type: application/json
 
 {
-  "isbn": "Test ISBN 25",
-  "title": "New Book 25",
-  "author": "New Author",
-  "description": "1234567890"
+  "isbn": "978-1098139872",
+  "title": "Learning JavaScript Design Patterns: A JavaScript and React Developer's Guide",
+  "author": "Addy Osmani",
+  "description": "The web development landscape has changed dramatically. JavaScript has become one of the most popular programming languages in the world and is used for everything from simple scripts to complex web applications. The JavaScript language has evolved to include modules, promises, and async/await, which has heavily influenced how we architect applications. The way developers write components, such as with React, has also significantly impacted how they think about maintainability. This has resulted in the need for modern patterns that take these new changes into account."
 }
 
 

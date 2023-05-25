@@ -11,20 +11,19 @@ POST http://localhost:5000/pages
 Content-Type: application/json
 
 {
-  "name": "New Page",
-  "author": "New Author",
-  "isbn": "1234567890"
+  "url": "https://www.amazon.ca/Learning-JavaScript-Design-Patterns-Developers/dp/1098139879/ref=sr_1_7?keywords=React&qid=1684982998&s=books&sr=1-7",
+  "content": "Today’s developers are exposed to many library-specific or framework-specific design patterns. React’s matured ecosystem and utilization of newer JS primitives provide an excellent launchpad to talk about best practices and patterns in the framework or library context. In addition to classic design patterns, this book covers modern React patterns, such as Hooks, Higher-Order Components, and Render Props. These patterns are specific to React and essential for building modern web applications using this popular framework.",
+  "number": 3,
+  "book_id": 1
 }
 
 
 ### PATCH Page
-PATCH http://localhost:5000/pages/1
+PATCH http://localhost:5000/pages/2
 Content-Type: application/json
 
 {
-  "name": "Updated Page",
-  "author": "Updated Author",
-  "isbn": "1234567890"
+  "book_id": 1
 }
 
 ### DELETE Page
