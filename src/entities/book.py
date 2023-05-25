@@ -1,4 +1,5 @@
 import sqlalchemy
+from sqlalchemy.orm import relationship
 
 from src.data.modelbase import SqlAlchemyBase
 
@@ -11,3 +12,4 @@ class Book(SqlAlchemyBase):
     author = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     description = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     isbn = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    pages = relationship("Page", back_populates='book')
