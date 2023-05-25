@@ -24,7 +24,8 @@ def create():
 
 @blueprint.route('/books/<book_id>', methods=['PATCH'])
 def update(book_id):
-    return book_service.update(book_id)
+    update_book_request = request.get_json()
+    return book_service.update(book_id, update_book_request)
 
 
 @blueprint.route('/books/<book_id>', methods=['DELETE'])

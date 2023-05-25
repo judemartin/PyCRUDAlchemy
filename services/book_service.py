@@ -1,48 +1,64 @@
 # book service
-from flask import jsonify
 
 from data import db_session
+from dto.outbound.book_response_dto import BookResponseDTO
 from entities.book import Book
 from utils.not_found_exception import NotFoundException, json_response
 
 
+@json_response
 def find_all():
     session = db_session.create_session()
-    return session.query(Book).all()
+    books = session.query(Book).all()
+    book_responses = BookResponseDTO.map_entity_list_to_dto_list(books)
+    return book_responses, 200
 
 
 @json_response
 def find_one(book_id: int):
     session = db_session.create_session()
-    book = session.query(Book).filter(Book.id is book_id).first()
+    book = session.query(Book).filter(Book.id == book_id).first()
     if book is None:
         raise NotFoundException(f'Book with id {book_id} not found')
-    return book
+    book_response = BookResponseDTO.map_entity_to_dto(book)
+    return book_response, 200
 
 
 @json_response
 def create(create_book_request):
     session = db_session.create_session()
-    book = Book()
-    book.title = create_book_request.get('title')
-    book.author = create_book_request.get('author')
-    book.description = create_book_request.get('description')
-    book.isbn = create_book_request.get('isbn')
+    book = Book(title=create_book_request.get('title'), author=create_book_request.get('author'),
+                description=create_book_request.get('description'), isbn=create_book_request.get('isbn'))
     session.add(book)
     session.commit()
-    book_data = {
-        'id': book.id,
-        'title': book.title,
-        'author': book.author,
-        'description': book.description,
-        'isbn': book.isbn
-    }
-    return jsonify(book_data), 201
+    book_response = BookResponseDTO.map_entity_to_dto(book)
+    return book_response.to_json(), 201
 
 
-def update(book_id: int):
-    return f'Book {book_id} updated!'
+@json_response
+def update(book_id: int, update_book_request: dict):
+    session = db_session.create_session()
+    book = session.query(Book).get(book_id)
+
+    if book is None:
+        raise NotFoundException(f'Book with id: {book_id} not found')
+
+    for key, value in update_book_request.items():
+        setattr(book, key, value)
+
+    session.commit()
+    return find_one(book_id)
 
 
+@json_response
 def delete(book_id: int):
-    return f'Book {book_id} deleted!'
+    session = db_session.create_session()
+    book = session.query(Book).get(book_id)
+
+    if book is None:
+        raise NotFoundException(f'Book with id: {book_id} not found')
+
+    session.delete(book)
+    session.commit()
+
+    return '', 204

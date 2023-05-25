@@ -11,8 +11,8 @@ POST http://localhost:5000/books
 Content-Type: application/json
 
 {
-  "isbn": "Test ISBN 5",
-  "title": "New Book 5",
+  "isbn": "Test ISBN 25",
+  "title": "New Book 25",
   "author": "New Author",
   "description": "1234567890"
 }
@@ -23,10 +23,8 @@ PATCH http://localhost:5000/books/1
 Content-Type: application/json
 
 {
-  "name": "Updated Book",
-  "author": "Updated Author",
-  "isbn": "1234567890"
+  "title": "Updated Book 50"
 }
 
 ### DELETE Book
-DELETE http://localhost:5000/books/1
+DELETE http://localhost:5000/books/9
